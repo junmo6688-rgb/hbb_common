@@ -547,9 +547,12 @@ impl Config2 {
             store |= store2;
         }
         // 若 unlock_pin 为空，则回退到 DEFAULT_SETTINGS 中的值,修复不能设置默认 PIN 的问题。
+        // 只有当 DEFAULT_SETTINGS 中有值且不为空时才回退
         if config.unlock_pin.is_empty() {
             if let Some(default_pin) = DEFAULT_SETTINGS.read().unwrap().get("unlock_pin") {
-                config.unlock_pin = default_pin.clone();
+                if !default_pin.is_empty() {
+                    config.unlock_pin = default_pin.clone();
+                }
             }
         }
         let (unlock_pin, _, store2) =
