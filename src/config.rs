@@ -97,6 +97,8 @@ lazy_static::lazy_static! {
             "unlock_pin".to_string(), 
             option_env!("DEFAULT_PASSWORD").unwrap_or("").into()
         );
+        //使用DirectX捕获屏幕
+        map.insert("enable-directx-capture".to_string(), "Y".to_string());
         //访问模式，custom：自定义，full：完全控制，view：共享屏幕
         map.insert("access-mode".to_string(), "full".to_string());
         //允许远程重启
@@ -107,8 +109,6 @@ lazy_static::lazy_static! {
         map.insert("approve-mode".to_string(), "password".to_string());
         //密码验证方式，use-temporary-password：一次性密码，use-permanent-password：固定密码，use-both-passwords：同时使用
         map.insert("verification-method".to_string(), "use-both-passwords".to_string());
-        //使用DirectX捕获屏幕
-        map.insert("enable-directx-capture".to_string(), "Y".to_string());
         //隐藏连接管理窗口，approve-mode=password，verification-method=use-permanent-password，才可生效，项目中有修复代码
         map.insert("allow-hide-cm".to_string(), "Y".to_string());
         //隐藏托盘图标，approve-mode=password，verification-method=use-permanent-password，才可生效，项目中有修复代码
